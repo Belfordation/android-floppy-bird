@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class FloppyBird extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture background;
-	Texture bird;
+
 
 	Texture[] birds;
 	int flapState = 0;
@@ -18,7 +18,7 @@ public class FloppyBird extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		background = new Texture("bg.png");
-		bird = new Texture("bird.png");
+
 
 		birds = new Texture[2];
 		birds[0] = new Texture("bird.png");
@@ -38,7 +38,7 @@ public class FloppyBird extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-		batch.draw(bird,Gdx.graphics.getWidth() / 2 - bird.getWidth() / 2, Gdx.graphics.getHeight() / 2 - bird.getWidth() /2 );
+		batch.draw(birds[flapState],Gdx.graphics.getWidth() / 2 - birds[flapState].getWidth() / 2, Gdx.graphics.getHeight() / 2 - birds[flapState].getWidth() /2 );
 		batch.end();
 
 	}
