@@ -39,21 +39,18 @@ public class FloppyBird extends ApplicationAdapter {
 	@Override
 	public void render () {
 
-		if (Gdx.input.justTouched()) {
-
-			Gdx.app.log("TOuched","Yes!");
-
-			gameState = 1 ;
-
-		}
-
-
-
 		if (gameState != 0) {
+
+			if (Gdx.input.justTouched()) {
+
+				velocity = -20;
+
+			}
 
 			velocity = velocity + gravity;
 
 			birdY -= velocity;
+
 
 		} else {
 
