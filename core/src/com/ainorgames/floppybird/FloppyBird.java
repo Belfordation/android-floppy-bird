@@ -47,9 +47,14 @@ public class FloppyBird extends ApplicationAdapter {
 
 			}
 
-			velocity = velocity + gravity;
+			if (birdY > 0 || velocity < 0 ) {
 
-			birdY -= velocity;
+				velocity = velocity + gravity;
+
+				birdY -= velocity;
+
+
+			}
 
 
 		} else {
