@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
@@ -12,7 +13,6 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.Random;
-
 
 
 public class FloppyBird extends ApplicationAdapter {
@@ -49,6 +49,8 @@ public class FloppyBird extends ApplicationAdapter {
 
 	int score = 0;
 	int scoringTube = 0;
+
+	BitmapFont font;
 	
 	@Override
 	public void create () {
@@ -62,6 +64,10 @@ public class FloppyBird extends ApplicationAdapter {
 		//shapeRenderer = new ShapeRenderer();
 
 		birdCircle = new Circle();
+
+		font = new BitmapFont();
+		font.setColor(Color.WHITE);
+		font.getData().setScale(10);
 
 
 		birdY = Gdx.graphics.getHeight() / 2 - birds[0].getWidth() /2;
@@ -85,6 +91,8 @@ public class FloppyBird extends ApplicationAdapter {
 			bottomTubeRectangles[i] = new Rectangle();
 
 		}
+
+
 
 	}
 
@@ -164,6 +172,9 @@ public class FloppyBird extends ApplicationAdapter {
 		}
 
 		batch.draw(birds[flapState],Gdx.graphics.getWidth() / 2 - birds[flapState].getWidth() / 2, birdY );
+
+		font.draw(batch, String.valueOf(score), 100, 200);
+
 		batch.end();
 
 		birdCircle.set(Gdx.graphics.getWidth() / 2, birdY + birds[flapState].getHeight() / 2, birds[flapState].getWidth() / 2 );
