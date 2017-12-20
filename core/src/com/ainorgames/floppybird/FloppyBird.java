@@ -26,10 +26,13 @@ public class FloppyBird extends ApplicationAdapter {
 	float maxTubeOffset;
 
 	Random randomGenerator;
-	float tubeOffset;
 
 	float tubeVelocity = 4;
-	float tubeX;
+
+	int numberOfTubes = 4;
+	float[] tubeX = new float[numberOfTubes];
+	float[] tubeOffset = new float[numberOfTubes];
+	float distanceBetweenTubes;
 	
 	@Override
 	public void create () {
@@ -48,7 +51,14 @@ public class FloppyBird extends ApplicationAdapter {
 
 		randomGenerator = new Random();
 
-		tubeX = Gdx.graphics.getWidth() / 2 - topTube.getWidth() / 2;
+		distanceBetweenTubes = Gdx.graphics.getWidth() / 2;
+
+		for (int i = 0; i <numberOfTubes; i++ ) {
+
+			tubeOffset[i] = (randomGenerator.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - 200);
+			tubeX[i] = Gdx.graphics.getWidth() / 2 - topTube.getWidth() / 2 + i * distanceBetweenTubes;
+
+		}
 
 	}
 
@@ -64,15 +74,15 @@ public class FloppyBird extends ApplicationAdapter {
 
 				velocity = -20;
 
-				tubeOffset = (randomGenerator.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - 200);
-
 			}
 
-			tubeX = tubeX - 4;
+			for (int i = 0; i <numberOfTubes; i++ ) {
+				tubeX[i] = tubeX[i] - tubeVelocity;
 
-			batch.draw(topTube, tubeX , Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset );
-			batch.draw(bottomTube, tubeX, Gdx.graphics.getHeight()/ 2 - gap / 2 - bottomTube.getHeight() + tubeOffset);
+				batch.draw(topTube, tubeX[i] , Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset[i] );
+				batch.draw(bottomTube, tubeX[i], Gdx.graphics.getHeight()/ 2 - gap / 2 - bottomTube.getHeight() + tubeOffset[i]);
 
+			}
 
 			if (birdY > 0 || velocity < 0 ) {
 
