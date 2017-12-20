@@ -51,7 +51,7 @@ public class FloppyBird extends ApplicationAdapter {
 
 		randomGenerator = new Random();
 
-		distanceBetweenTubes = Gdx.graphics.getWidth() / 2;
+		distanceBetweenTubes = Gdx.graphics.getWidth() * 3/ 4;
 
 		for (int i = 0; i <numberOfTubes; i++ ) {
 
@@ -77,6 +77,12 @@ public class FloppyBird extends ApplicationAdapter {
 			}
 
 			for (int i = 0; i <numberOfTubes; i++ ) {
+
+				if (tubeX[i] < - topTube.getWidth()) {
+
+					tubeX[i] += numberOfTubes * distanceBetweenTubes;
+
+				}
 				tubeX[i] = tubeX[i] - tubeVelocity;
 
 				batch.draw(topTube, tubeX[i] , Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset[i] );
